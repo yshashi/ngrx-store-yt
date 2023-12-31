@@ -1,0 +1,23 @@
+<div class="max-w-sm rounded bg-white overflow-hidden shadow-lg">
+  <img width="200" class="block mx-auto" [src]="product.image" alt="Sunset in the mountains">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">{{product.title}}</div>
+    <p class="text-gray-700 text-base">
+     {{product.description.substring(0, 100)}}...
+    </p>
+    <div class="mt-4">
+      <span class="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-base font-semibold text-gray-900">
+        {{product.price | currency}}
+      </span>
+    </div>
+    <button type="button"
+    (click)="addToCart(product)"
+      class="mt-4 w-full rounded-sm bg-green-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+      Add to cart
+    </button>
+    <button type="button"
+      class="mt-4 w-full rounded-sm bg-yellow-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+      View product
+    </button>
+  </div>
+</div>

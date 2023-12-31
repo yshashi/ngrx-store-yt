@@ -5,7 +5,7 @@
       <div class="flex justify-between items-center">
         <div class="text-4xl font-semibold text-gray-700 dark:text-white">Angular NGRX STORE</div>
         <div>
-          <button class="text-gray-600 dark:text-gray-300 hover:underline">Home <span>{{count$ | async}}</span></button>
+          <button routerLink="/cart" class="text-gray-600 dark:text-gray-300 hover:underline">Cart <span>{{(products$ | async)?.length}}</span></button>
 
           <!-- Add more navigation items here -->
         </div>
@@ -13,14 +13,4 @@
     </div>
   </nav>
 
-  <app-counter />
-
-  <!-- Footer -->
-  <footer class="bg-white absolute w-full bottom-0 dark:bg-gray-900">
-    <div class="container mx-auto px-6 py-4">
-      <p class="text-gray-700 dark:text-white text-center">
-        © 2023 Angular Material Tailwind Boilerplate
-      </p>
-    </div>
-  </footer>
-</div>
+<router-outlet />
