@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { CounterComponent } from './counter/counter.component';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './states/app.state';
 import { selectCount } from './states/counter/counter.selector';
-import { ProductsComponent } from './products/products.component';
 import { IProduct } from './shared/models/product.interface';
 import { selectCartProducts } from './states/cart/cart.selector';
 
