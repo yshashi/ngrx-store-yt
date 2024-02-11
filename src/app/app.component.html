@@ -3,9 +3,11 @@
   <nav class="bg-white dark:bg-gray-900 shadow">
     <div class="container mx-auto px-6 py-4">
       <div class="flex justify-between items-center">
-        <div class="text-4xl font-semibold text-gray-700 dark:text-white">Angular NGRX STORE</div>
+        <div class="text-4xl font-semibold text-gray-700 dark:text-white ml-[350px]">Angular NGRX STORE ===> NGRX <span
+            style="color: red;">SIGNAL</span> STORE</div>
         <div>
-          <button routerLink="/cart" class="text-gray-600 dark:text-gray-300 hover:underline">Cart <span>{{(products$ | async)?.length}}</span></button>
+          <button routerLink="/cart" class="text-gray-600 dark:text-gray-300 hover:underline">Cart
+            <span>{{cartStore.products().length}}</span></button>
 
           <!-- Add more navigation items here -->
         </div>
@@ -13,4 +15,4 @@
     </div>
   </nav>
 
-<router-outlet />
+  <router-outlet />

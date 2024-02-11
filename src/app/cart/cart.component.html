@@ -1,4 +1,4 @@
-@if ((cartItems$ | async)?.length === 0) {
+@if (cartStore.products().length === 0) {
 <div class="mx-auto bg-white rounded-md flex max-w-3xl flex-col space-y-4 p-6 px-2 sm:p-10 sm:px-2">
   <h2 class="text-3xl font-bold text-center">Your cart is Empty!</h2>
 </div>
@@ -8,7 +8,7 @@
 <div class="mx-auto bg-white rounded-md flex max-w-3xl flex-col space-y-4 p-6 px-2 sm:p-10 sm:px-2">
   <h2 class="text-3xl font-bold">Your cart</h2>
   <ul class="flex flex-col divide-y divide-gray-200 h-[400px] overflow-y-auto">
-    @for (item of cartItems$ | async; track $index) {
+    @for (item of cartStore.products(); track $index) {
     <li class="flex flex-col py-6 sm:flex-row sm:justify-between">
       <div class="flex w-full space-x-2 sm:space-x-4">
         <img class="h-20 w-20 flex-shrink-0 rounded object-contain outline-none dark:border-transparent sm:h-32 sm:w-32"
@@ -26,8 +26,7 @@
             </div>
           </div>
           <div class="flex divide-x text-sm">
-            <button type="button"
-            (click)="remove(item.id)"
+            <button type="button" (click)="cartStore.removeItem(item.id)"
               class="flex text-red-400 items-center space-x-2 px-2 py-1 pl-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -50,15 +49,13 @@
             </button>
             <!-- Quantity Controls -->
             <div class="quantity-controls flex items-center pl-4">
-              <button
-              (click)="decrement(item.id)"
+              <button (click)="decrement(item.id, item.quantity)"
                 class="decrement-button bg-red-300 text-gray-600 hover:bg-red-400 px-2 py-1 rounded-l">
                 -
               </button>
               <input type="text" readonly class="quantity-input h-7 w-12 text-center border-t border-b"
                 [value]="item.quantity">
-              <button
-              (click)="increment(item.id)"
+              <button (click)="cartStore.increment(item.id)"
                 class="increment-button bg-green-300 text-gray-600 hover:bg-green-400 px-2 py-1 rounded-r">
                 +
               </button>
@@ -71,7 +68,7 @@
   </ul>
   <div class="space-y-1 text-right">
     <p>
-      Total amount:<span class="font-semibold"> {{totalPrice$ | async | currency}}</span>
+      Total amount:<span class="font-semibold"> {{cartStore.totalPrice() | currency}}</span>
     </p>
   </div>
   <div class="flex justify-end space-x-4">

@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { addToCart } from '../states/cart/cart.action';
 import * as ProductActions from '../states/product/product.action';
 import * as ProductSelectors from '../states/product/product.selector';
+import { CartStore } from '../store/cart.store';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -21,6 +22,7 @@ export class ProductsComponent implements OnInit {
   productApi = inject(ProductApiService);
   products$!: Observable<IProduct[]>;
   error!: Observable<string | null>;
+  cartStore = inject(CartStore);
   constructor(private store: Store<{ cart: { products: IProduct[] } }>) {
     this.store.dispatch(ProductActions.loadProduct());
     this.products$ = this.store.select(ProductSelectors.selectAllProducts);
@@ -30,6 +32,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {}
 
   addItemToCart(product: IProduct) {
-    this.store.dispatch(addToCart({ product }));
+    //this.store.dispatch(addToCart({ product }));
+    this.cartStore.addToCart(product);
   }
 }

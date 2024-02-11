@@ -11,7 +11,7 @@ http = inject(HttpClient);
 constructor() { }
 
 getProducts(){
-  return this.http.get<IProduct[]>('https://fakestoreapi.com/produc')
+  return this.http.get<IProduct[]>('https://fakestoreapi.com/products')
   .pipe(
     map(((products)=> {
       return products.map((product)=>{
